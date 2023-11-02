@@ -1,0 +1,17 @@
+docker build -t hi-docker .
+-- o ponto acima indica que é pra construir a partir do diretorio local
+-- se não informado, vai dar erro
+
+
+
+docker run hi-docker
+
+docker-compose up --build
+# cria os containers conforme o yml
+
+docker-compose down
+
+-- dentro do sh, se executar um: ping backend o dnsresolver do docker vai entender pra qual ip pingar (pelo nome do container)
+
+
+docker-compose logs

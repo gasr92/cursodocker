@@ -1,0 +1,4 @@
+docker build -t hi-docker .
+
+-- o ponto acima indica que é pra construir a partir do diretorio local
+-- se não informado, vai dar erro

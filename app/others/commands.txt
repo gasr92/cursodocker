@@ -1,0 +1,87 @@
+docker build -t app .
+
+docker images
+
+docker run -it app sh
+#-it: modo interativo
+#sh: indica que quer abrir no shell
+    # ao entrar no shell, podemos rodar comandos linux
+
+    node --version
+
+    exit
+
+
+docker run -dp 3000:3000 app
+#d: rodar em background
+#p: rotear a porta
+
+
+docker build -t app:v1.0.0 .
+#-t: tag para indicar versão
+
+docker image remove app:v1.0.0
+
+docker image tag app:latest app:v1.0.0
+# troca o nome/tag da imagem chamada app:latest para app:v1.0.0
+
+
+docker image tag 60bd79efe0ce gsdr1992/app:v1
+
+docker login
+
+docker push gsdr1992/app:v1
+
+
+docker image save --help
+
+docker image save -o appv2.tar app:v2
+
+docker image rm _id_remover_
+#se houver dois repositórios com o mesmo ID vai dar erro, então, deve remover pelo nome da imagem
+
+
+docker image load --help
+docker image load -i appv2.tar
+
+
+docker ps
+# verifica containers em execução
+
+docker ps -a
+# lista todos containers
+
+docker run -d --name manga app:v2
+
+docker logs -n 10 4a7
+
+docker run -d -p 80:3000 --name banana app:v2
+# -p host:docker
+
+docker stop banana
+docker start banana
+
+
+#executando comandos nos containers
+docker exec banana ls
+
+
+
+docker rm -f manga
+
+
+docker volume create app-dados
+docker volume inspect app-dados
+
+docker run -d -p 3000:3000 --name kiwi -v app-dados:/app/dados app:v2
+
+docker exec -it kiwi sh
+echo hi docker > docker.txt
+cat docker.txt
+# lê conteúdo do arquivo
+
+docker rm -f kiwi
+
+docker cp kiwi2:/app/teste.txt .
+
+docker-compose --version
